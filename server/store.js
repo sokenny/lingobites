@@ -1,5 +1,6 @@
 const store = {
   "in-progress-bites": {},
+  users: {},
   sentences: [],
 };
 

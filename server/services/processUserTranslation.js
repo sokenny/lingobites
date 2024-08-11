@@ -1,6 +1,7 @@
 import { openai, twilio } from "../app.js";
-import { getDB, setDB } from "../mockupData.js";
 import store from "../store.js";
+import db from "../models/index.js";
+import sendNextBiteInQueue from "./sendNextBiteInQueue.js";
 
 function getPrompt(original, translation) {
   return `
@@ -19,37 +20,99 @@ function getPrompt(original, translation) {
 
     "è una storia di avventure" para "es una historia de aventuras".
     "ambientata in mare" se usa para decir "ambientada en el mar", empleando "in" para "en" en este contexto.'
+
+    Como podes ver, tiene que ser bien breve tu respuesta.
+
+    Responde en formato JSON valido con la siguiente estructura:
+    {
+    "answer": // tu respuesta en forma de string. Asegurate incluir line breaks para que sea legible,
+    "score": // tu puntuación de 1 a 10, siendo 1 la peor y 10 la mejor,
+    }
       `;
 }
 
+// TODO-p1: Guardar el score en el bite
+
 async function processUserTranslation(req) {
-  const message = req.body.Body;
+  const userMessage = req.body.Body;
   const phone = req.body.From.replace("whatsapp:+", "");
 
-  // get user from phone number
-  const db = getDB();
-  const user = db.users.find((user) => user.phone === phone);
+  let user = store["users"][phone];
 
-  // get in progress bite for user
-  const inProgressBite = store["in-progress-bites"][user.id];
+  if (!user) {
+    user = await db.User.findOne({
+      where: { phone },
+    });
+
+    store["users"][phone] = user;
+  }
+
+  let inProgressBite = store["in-progress-bites"][user.id];
+
+  if (!inProgressBite) {
+    console.log("No in progress bite found for user", user.id);
+    inProgressBite = await db.Bite.findOne({
+      where: {
+        user_id: user.id,
+        delivered_at: {
+          [db.Sequelize.Op.ne]: null,
+        },
+        translated_at: null,
+      },
+      order: [["delivered_at", "DESC"]],
+    });
+
+    // if still no in progress bite, we send the next bite in line
+    if (!inProgressBite) {
+      console.log("Still no in progress bites found");
+      return sendNextBiteInQueue(user);
+    }
+  }
+
+  store["in-progress-bites"][user.id] = inProgressBite;
 
   const openaiResponse = await openai.chat.completions.create({
     model: "gpt-4o-mini",
     messages: [
-      { role: "user", content: getPrompt(inProgressBite.original, message) },
+      {
+        role: "user",
+        content: getPrompt(inProgressBite.original, userMessage),
+      },
     ],
-    temperature: 0.5,
+    temperature: 0.3,
   });
 
   const content = openaiResponse.choices[0].message.content.trim();
 
-  console.log("Content: ", content);
+  const response = JSON.parse(content);
+  console.log("Response: ", response);
 
-  console.log("User: ", user);
-  console.log("Storw: ", store);
-  console.log("In progress bite: ", inProgressBite);
+  // Update the bite in the background without waiting for the operation to complete
+  updateBiteInBackground(inProgressBite.id, userMessage, user);
 
-  return content;
+  return response.answer;
+}
+
+function updateBiteInBackground(biteId, translation, user) {
+  // Run the update in the background
+  setImmediate(async () => {
+    try {
+      store["in-progress-bites"][user.id] = null;
+      await db.Bite.update(
+        {
+          translation,
+          translated_at: new Date(),
+        },
+        {
+          where: { id: biteId },
+        }
+      );
+      console.log(`Bite ${biteId} updated successfully.`);
+      sendNextBiteInQueue(user);
+    } catch (error) {
+      console.error(`Failed to update bite ${biteId}:`, error);
+    }
+  });
 }
 
 export default processUserTranslation;

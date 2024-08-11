@@ -1,23 +1,40 @@
-import { getDB } from "../mockupData.js";
+import db from "../models/index.js";
+import { Op } from "sequelize";
 import store from "../store.js";
 
-function getUsersToContact() {
+async function getUsersToContact() {
   console.log("Store ahora: ", store);
-  const mockupData = getDB();
-  const users = mockupData.users;
 
-  return users.filter((user) => {
-    const userBites = mockupData.bites.filter(
-      (bite) => bite.user_id === user.id
-    );
+  const usersToContact = await db.User.findAll({
+    include: [
+      {
+        model: db.Bite,
+        as: "bites",
+        where: {
+          translated_at: null,
+          [Op.or]: [
+            {
+              delivered_at: null,
+            },
+            {
+              delivered_at: {
+                [Op.lt]: new Date(new Date() - 8 * 60 * 60 * 1000),
+              },
+            },
+          ],
+        },
+      },
+    ],
+  });
 
-    console.log("userBites", userBites);
-
+  const filteredUsers = usersToContact.filter((user) => {
+    const userBites = user.bites;
     const userHasNoBites = userBites.length === 0;
     const userHasUntranslatedBites = userBites.some(
       (bite) => bite.translated_at === null
     );
     const userHasNoInProgressBite = !store["in-progress-bites"][user.id];
+
     console.log("userHasNoInProgressBite: ", userHasNoInProgressBite);
     console.log("userHasUntranslatedBites: ", userHasUntranslatedBites);
 
@@ -27,6 +44,8 @@ function getUsersToContact() {
       (userHasUntranslatedBites && userHasNoInProgressBite)
     );
   });
+
+  return filteredUsers;
 }
 
 export default getUsersToContact;
