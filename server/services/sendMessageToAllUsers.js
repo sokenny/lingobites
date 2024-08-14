@@ -2,6 +2,7 @@ import { twilio } from "../app";
 import db from "../mockupData";
 
 function processMessage(user) {
+  console.log("---processMessage");
   console.log("Run! ", user.phone);
   const now = new Date();
 

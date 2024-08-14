@@ -33,6 +33,13 @@ export function initializeBite(sequelize) {
         type: DataTypes.DATE,
         allowNull: true,
       },
+      score: {
+        type: DataTypes.INTEGER,
+        validate: {
+          min: 0,
+          max: 10,
+        },
+      },
       delivered_at: {
         type: DataTypes.DATE,
         allowNull: true,
