@@ -1,14 +1,14 @@
-import { v4 as uuidv4 } from "uuid";
 import express from "express";
 import store from "./store.js";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import twilioClient from "twilio";
 import OpenAI from "openai";
-import generateSentences from "./services/generateSentences.js";
 import processUserTranslation from "./services/processUserTranslation.js";
 import sendBite from "./services/sendBite.js";
 import db from "./models/index.js";
+import generateBites from "./services/generateBites.js";
+import provideUserFeedback from "./services/provideUserFeedback.js";
 
 dotenv.config();
 
@@ -54,7 +54,14 @@ app.post("/onboard-user/:userId", async (req, res) => {
   try {
     const user = await db.User.findOne({
       where: { id: userId },
-      include: [{ model: db.Bite, as: "bites" }],
+      include: [
+        { model: db.Bite, as: "bites" },
+
+        {
+          model: db.Bot,
+          as: "bots",
+        },
+      ],
     });
 
     if (user && user.bites.length > 0) {
@@ -70,21 +77,7 @@ app.post("/onboard-user/:userId", async (req, res) => {
       });
     }
 
-    const sentences = await generateSentences();
-
-    console.log("Sentences: ", sentences);
-
-    const batchId = uuidv4();
-
-    const newBites = sentences.map((sentence) => ({
-      user_id: user.id,
-      original: sentence,
-      translation: null,
-      translated_at: null,
-      batch_id: batchId,
-    }));
-
-    const bites = await db.Bite.bulkCreate(newBites, { transaction }); // Include transaction in the bulkCreate
+    const bites = await generateBites({ user, numberOfBites: 10 });
 
     await sendBite(user, bites[0]);
 
@@ -138,6 +131,19 @@ app.post("/reach-out-to-users", async (req, res) => {
   }
 });
 
+app.post("/provide-user-feedback/:userId", async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const feedback = await provideUserFeedback(userId);
+
+    res.json({ feedback });
+  } catch (error) {
+    console.error("Error providing feedback: ", error);
+
+    res.status(500).json({ message: "An error occurred providing feedback" });
+  }
+});
+
 app.post("/process-message", async (req, res) => {
   try {
     console.log("body: ", req.body);
@@ -169,6 +175,8 @@ app.post("/process-message", async (req, res) => {
     }
   }
 });
+
+// TODO-p1: Create endpoint that returns chart data / stats for last X bites
 
 app.get("/test", async (req, res) => {
   const test = await db.User.create({

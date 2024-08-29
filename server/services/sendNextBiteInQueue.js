@@ -1,8 +1,9 @@
 import sendBite from "./sendBite.js";
 import db from "../models/index.js";
+import generateBites from "./generateBites.js";
 
 async function sendNextBiteInQueue(user) {
-  // look for the oldest bite with delivered_at null
+  console.log("---sendNextBiteInQueue");
   const bite = await db.Bite.findOne({
     where: {
       user_id: user.id,
@@ -15,9 +16,9 @@ async function sendNextBiteInQueue(user) {
   if (bite) {
     return sendBite(user, bite);
   } else {
-    // throw limit reached error
-    throw new Error("User has reached the limit of bites");
-    // TODO-p1: For now lets recharge bites here
+    console.log("No bites in queue, generating new bites");
+    const bites = await generateBites({ user, numberOfBites: 10 });
+    return sendBite(user, bites[0]);
   }
 }
 
