@@ -1,5 +1,6 @@
 import { Inter } from "next/font/google";
 import { Providers } from "./providers";
+import Nav from "./components/Nav";
 import styles from "./layout.module.css";
 
 import "./globals.css";
@@ -14,8 +15,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body
+        className={
+          // inter.className
+          // back tick
+          `${styles.page} ${inter.className}`
+        }
+      >
         <Providers>
+          <Nav />
           <div className={styles.pageContent}>{children}</div>
         </Providers>
       </body>
