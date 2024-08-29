@@ -8,6 +8,7 @@ import processUserTranslation from "./services/processUserTranslation.js";
 import sendBite from "./services/sendBite.js";
 import db from "./models/index.js";
 import generateBites from "./services/generateBites.js";
+import provideUserFeedback from "./services/provideUserFeedback.js";
 
 dotenv.config();
 
@@ -127,6 +128,19 @@ app.post("/reach-out-to-users", async (req, res) => {
     res
       .status(500)
       .json({ message: "An error occurred reaching out to users" });
+  }
+});
+
+app.post("/provide-user-feedback/:userId", async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const feedback = await provideUserFeedback(userId);
+
+    res.json({ feedback });
+  } catch (error) {
+    console.error("Error providing feedback: ", error);
+
+    res.status(500).json({ message: "An error occurred providing feedback" });
   }
 });
 
