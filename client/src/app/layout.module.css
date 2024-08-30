@@ -5,3 +5,44 @@
 .pageContent {
     background-color: white;
 }
+
+.stickyBar {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: var(--primary);
+    padding: 8px;
+}
+
+.sbItems {
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-size: 14px;
+}
+
+.sbItems > div {
+    margin-right: 32px;
+    display: flex;
+    align-items: center;
+}
+
+.sbItems > div img {
+    width: 90px;
+    margin-right: 8px;
+}
+
+.sbItems > div :last-child {
+    margin-right: 0;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    padding: 8px;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.4);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+ 

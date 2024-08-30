@@ -24,7 +24,18 @@ export default function RootLayout({ children }) {
       >
         <Providers>
           <Nav />
+          <div className={styles.stickyBar}>
+            <div className={styles.sbItems}>
+              <div>Aprendé 5x veces más rápido</div>
+              <div>
+                <img src="/stars.webp" />
+                4.97 estrellas en nuestros 37 reviews
+              </div>
+              <div>14 días gratis</div>
+            </div>
+          </div>
           <div className={styles.pageContent}>{children}</div>
+          <footer className={styles.footer}>hello@lingobites.com</footer>
         </Providers>
       </body>
     </html>

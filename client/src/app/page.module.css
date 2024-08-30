@@ -2,6 +2,10 @@
   background-color: white;
 }
 
+.cta {
+  font-size: 22px;
+}
+
 .main section {
   margin: 64px 15vw;
   background-color: white;
@@ -29,10 +33,6 @@
   margin-top: 0;
   margin-bottom: 32px;
   font-size: 24px;
-}
-
-.header .cta {
-  font-size: 22px;
 }
 
 .header .right {
@@ -115,6 +115,10 @@
   margin-bottom: 120px;
 }
 
+.feature:last-child {
+  margin-bottom: 0;
+}
+
 .feature .copy, .feature .asset {
   width: 50%;
 }
@@ -131,6 +135,7 @@
 .copy .mCopy {
   font-size: 32px;
   font-weight: 600;
+  margin-bottom: 12px;
 }
 
 .copy .sCopy {
@@ -154,4 +159,92 @@
 .feature3 .asset img {
   width: 350px;
   border-radius: 8px;
+}
+
+.main .pricing {
+  margin: 0;
+  background-color: rgba(0,0,0,0.025);
+  padding: 64px 15vw;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.pricing h3 {
+  font-size: 48px;
+  text-align: center;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.pricing h3 span {
+  color: var(--primary);
+}
+
+.pricing .includes {
+  margin-top: 32px;
+  font-size: 24px;
+  text-align: center;
+}
+
+.pricing .includes div {
+  margin-bottom: 12px;
+}
+
+.pricing .cta {
+  margin-top: 32px;
+}
+
+.plans {
+  margin-top: 32px;
+  display: flex;
+}
+
+.plan {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 32px;
+  width: 200px;
+  font-size: 20px;
+  transition: box-shadow 0.25s;
+  cursor: pointer;
+  margin-right: 12px;
+  position: relative;
+}
+
+.plan:nth-child(2) {
+  border-color: var(--gold);
+}
+
+.plan .prefered {
+  position: absolute;
+  top: 0;
+  font-size: 12px;
+  background-color: var(--gold);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 4px;
+  transform: translateY(-50%);
+}
+
+.plan .period {
+  font-weight: 600;
+}
+
+.plan .price {
+  color: var(--primary);
+}
+
+.plan:hover {
+  box-shadow: 0 0 10px rgba(0,0,0,.25);
+}
+
+.disclaimer {
+  font-size: 14px;
+  margin-top: 8px;
+  font-style: italic;
+  color: rgba(0, 0, 0, 0.4);
 }

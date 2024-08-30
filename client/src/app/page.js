@@ -27,6 +27,10 @@ const languages = [
   },
 ];
 
+// TODO-p1-1: Adaptar a mobile
+
+// TODO-p1-1: Crear el onboarding con las preguntas y eso.
+
 export default function Home() {
   return (
     <main className={styles.main}>
@@ -45,6 +49,7 @@ export default function Home() {
             <span>Disponible en Whatsapp</span>
           </div>
         </div>
+        {/* TODO-p1-1: Copiar animacion de lingobites aca (user framer motion (?))  */}
         <div className={styles.right}>
           <img
             src="/lingobites-placeholder.png"
@@ -74,6 +79,7 @@ export default function Home() {
             className={styles.stars}
           />
           <h3 className={styles.quote}>
+            {/* TODO-p2: Poner un vid testimonio mio (?) */}
             <span className={styles.qm}>"</span>Tuve un cambio abrupto. Me
             desbloqueó la capacidad de empezar a hablar el italiano. Antes me
             quedaba en blanco. Yo creo que esto de tener un compañero con quien
@@ -133,7 +139,40 @@ export default function Home() {
         </div>
       </section>
 
-      {/* TODO: Features / Caracteristicas */}
+      <section className={styles.pricing}>
+        <h3>
+          LingoBites es <span>30 veces</span> más barato que un tutor!
+        </h3>
+        <div className={styles.plans}>
+          <div className={styles.plan}>
+            <div className={styles.period}>1 mes</div>
+            <div className={styles.price}>£19</div>
+          </div>
+          <div className={styles.plan}>
+            <div className={styles.period}>6 meses</div>
+            <div className={styles.price}>£49</div>
+            <div className={styles.prefered}>Opción preferida!</div>
+          </div>
+          <div className={styles.plan}>
+            <div className={styles.period}>12 meses</div>
+            <div className={styles.price}>£69</div>
+          </div>
+        </div>
+        <div className={styles.disclaimer}>
+          Vas a tener 14 días de prueba gratuita!
+        </div>
+        <div className={styles.includes}>
+          <div>Todos los planes incluyen:</div>
+          ✅ Chat y práctica 24/7 <br />✅ Mensajes ilimitados al día <br />✅
+          Corrección ilimitada de errores <br />✅ Respuestas rápidas <br />✅
+          Notas de voz
+          <br />✅ Conversación iniciada por IA <br />✅ Informes de aprendizaje
+          por correo electrónico (¡Próximamente!)
+        </div>
+        <Button color="primary" className={`button ${styles.cta}`}>
+          Comenzar a aprender ahora
+        </Button>
+      </section>
 
       {/* TODO: Stats de lo mas rapido que se aprende */}
     </main>
