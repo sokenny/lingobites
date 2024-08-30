@@ -33,6 +33,7 @@
   margin-top: 0;
   margin-bottom: 32px;
   font-size: 24px;
+  color: rgba(0, 0, 0, 0.4);
 }
 
 .header .right {
@@ -247,4 +248,77 @@
   margin-top: 8px;
   font-style: italic;
   color: rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 768px) {
+  .main section {
+    margin: 64px 5vw;
+  }
+
+  .header {
+    flex-direction: column; 
+    text-align: center;
+  }
+
+  .header .title {
+    margin-bottom: 18px;
+    font-size: 42px;
+  }
+
+  .header .description {
+    margin-bottom: 18px;
+  }
+
+  .header > div {
+    width: 100%;
+  }
+
+  .whatsapp {
+    text-align: center;
+    justify-content: center;
+    margin-top: 8px;
+    color: rgba(0, 0, 0, 0.4);
+    margin-bottom: 32px;
+  }
+
+  .main .pricing {
+    padding: 64px 5vw;
+  }
+
+  .main .pricing h3 {
+    font-size: 42px;
+  }
+  .main .feature {
+    flex-direction: column;
+  }
+
+  .main .feature > div {
+    width: 100%;
+  }
+
+  .main .feature .copy {
+    margin-bottom: 32px;
+  }
+
+  .mCopy {
+  }
+
+  .sCopy {
+    color: rgba(0, 0, 0, 0.4);
+  }
+
+  .main .feature .asset img {
+    width: 100%;
+  }
+
+  .plans {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .plan {
+    margin-bottom: 12px;
+    margin-right: 0;
+    width: 100%;
+  }
 }

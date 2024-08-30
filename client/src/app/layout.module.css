@@ -46,3 +46,18 @@
     border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
  
+@media (max-width: 768px) {
+    /* sbitems first and last child display none */
+    .sbItems > div:first-child {
+        display: none;
+    }
+
+    .sbItems > div {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sbItems > div:last-child {
+        display: none;
+    }
+}

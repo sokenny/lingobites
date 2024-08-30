@@ -36,7 +36,7 @@ export default function Home() {
     <main className={styles.main}>
       <section className={styles.header}>
         <div className={styles.left}>
-          <h1 className={styles.title}>Mejora tus habilidades lingüísticas</h1>
+          <h1 className={styles.title}>Mejorá tus habilidades lingüísticas</h1>
           <h2 className={styles.description}>
             LangBuddy es un tutor de idiomas de IA nativo en más de 300 idiomas
             que te ayudará a mejorar chateando contigo.
@@ -46,10 +46,11 @@ export default function Home() {
           </Button>
           <div className={styles.whatsapp}>
             <img src="/whatsapp.svg" className={styles.wppIcon} />{" "}
-            <span>Disponible en Whatsapp</span>
+            <span>Disponible en Whatsapp!</span>
           </div>
         </div>
         {/* TODO-p1-1: Copiar animacion de lingobites aca (user framer motion (?))  */}
+        {/* O sino, inspectear la img de ellos y editar todos los textos. Y que mi animacion sea simplemente un slideup del celu! */}
         <div className={styles.right}>
           <img
             src="/lingobites-placeholder.png"
@@ -139,7 +140,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className={styles.pricing}>
+      <section className={styles.pricing} id="pricing">
         <h3>
           LingoBites es <span>30 veces</span> más barato que un tutor!
         </h3>
