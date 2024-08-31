@@ -4,6 +4,7 @@
 
 .cta {
   font-size: 22px;
+  border-radius: 6px;
 }
 
 .main section {
@@ -39,6 +40,21 @@
 .header .right {
   display: flex;
   justify-content: center;
+}
+
+/* make .header .right img slide in and up with opacity and transform */
+.header .right img {
+  opacity: 0;
+  transform: translateY(60px);
+  animation: slideIn 0.65s forwards;
+  animation-delay: .25s;
+}
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .cta {
@@ -120,7 +136,8 @@
   margin-bottom: 0;
 }
 
-.feature .copy, .feature .asset {
+.feature .copy,
+.feature .asset {
   width: 50%;
 }
 
@@ -130,7 +147,7 @@
 }
 
 .feature .asset img {
-  box-shadow: 0 0 10px rgba(0,0,0,.25);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
 }
 
 .copy .mCopy {
@@ -164,7 +181,7 @@
 
 .main .pricing {
   margin: 0;
-  background-color: rgba(0,0,0,0.025);
+  background-color: rgba(0, 0, 0, 0.025);
   padding: 64px 15vw;
   display: flex;
   align-items: center;
@@ -240,7 +257,7 @@
 }
 
 .plan:hover {
-  box-shadow: 0 0 10px rgba(0,0,0,.25);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
 }
 
 .disclaimer {
@@ -256,7 +273,7 @@
   }
 
   .header {
-    flex-direction: column; 
+    flex-direction: column;
     text-align: center;
   }
 

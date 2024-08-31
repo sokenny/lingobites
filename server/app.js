@@ -23,9 +23,10 @@ export const openai = new OpenAI({
 
 const app = express();
 
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const port = 3000;
+const port = 3001;
 
 app.get("/", (req, res) => {
   res.send("Hello World! Check your console for automated messages.");
@@ -185,6 +186,34 @@ app.get("/test", async (req, res) => {
   });
 
   res.json(test);
+});
+
+app.post("/public/authenticate", async (req, res) => {
+  try {
+    console.log("REQ BODY: ", req.body);
+    const { email, phone } = req.body;
+
+    const user = await db.User.findOne({
+      where: {
+        email,
+      },
+    });
+
+    if (user) {
+      return res.status(401).json({ message: "User already exists" });
+    }
+
+    await db.User.create({
+      email,
+      phone,
+    });
+
+    res.json({ message: "User created" });
+  } catch (error) {
+    console.error("Error authenticating user: ", error);
+
+    res.status(500).json({ message: "An error occurred authenticating user" });
+  }
 });
 
 app.listen(port, () => {

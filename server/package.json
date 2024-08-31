@@ -5,8 +5,8 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js"
+    "start": "PORT=3001 node app.js",
+    "dev": "PORT=3001 nodemon app.js"
   },
   "dependencies": {
     "body-parser": "^1.20.2",

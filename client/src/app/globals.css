@@ -2,9 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+img {
+  -webkit-user-drag: none;
+  user-select: none;
+}
 
 :root {
-
   /* colors */
   --primary: #0072f5;
   --gold: #f5b800;
@@ -96,7 +99,6 @@ body {
 }
 
 body {
-
 }
 
 .button {

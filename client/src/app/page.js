@@ -1,6 +1,7 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import { Button } from "@nextui-org/react";
+import SignUpCTA from "./components/SignUpCTA";
 
 // TODO-p1-1: Terminar landing page
 
@@ -31,6 +32,10 @@ const languages = [
 
 // TODO-p1-1: Crear el onboarding con las preguntas y eso.
 
+<span>
+  Vamos con esta otra: <b>"Me encanta comer pizza los fines de semana."</b>
+</span>;
+
 export default function Home() {
   return (
     <main className={styles.main}>
@@ -38,12 +43,13 @@ export default function Home() {
         <div className={styles.left}>
           <h1 className={styles.title}>Mejorá tus habilidades lingüísticas</h1>
           <h2 className={styles.description}>
-            LangBuddy es un tutor de idiomas de IA nativo en más de 300 idiomas
-            que te ayudará a mejorar chateando contigo.
+            Traduce pequeñas oraciones a diario desde WhatsApp y obtén
+            correcciones en tiempo real. Guardaremos tu respuestas, y te
+            brindaremos un reporte de tu progreso!
           </h2>
-          <Button color="primary" className={`button ${styles.cta}`}>
+          <SignUpCTA className={styles.cta}>
             Comenzar a aprender ahora
-          </Button>
+          </SignUpCTA>
           <div className={styles.whatsapp}>
             <img src="/whatsapp.svg" className={styles.wppIcon} />{" "}
             <span>Disponible en Whatsapp!</span>
@@ -53,7 +59,7 @@ export default function Home() {
         {/* O sino, inspectear la img de ellos y editar todos los textos. Y que mi animacion sea simplemente un slideup del celu! */}
         <div className={styles.right}>
           <img
-            src="/lingobites-placeholder.png"
+            src="/lingobites-phone.png"
             alt="Lingo bites whatsapp conversation"
           />
         </div>
@@ -92,7 +98,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className={styles.features}>
+      <section className={styles.features} id="features">
         <div className={`${styles.feature} ${styles.feature1}`}>
           <div className={styles.copy}>
             <div className={styles.mCopy}>Corrección en tiempo real</div>
@@ -103,7 +109,7 @@ export default function Home() {
           </div>
           <div className={styles.asset}>
             <img
-              src="/correction.png"
+              src="/realtime-corrections.png"
               alt="Lingo bites whatsapp conversation"
               className={styles.correctionImg}
             />
@@ -170,9 +176,7 @@ export default function Home() {
           <br />✅ Conversación iniciada por IA <br />✅ Informes de aprendizaje
           por correo electrónico (¡Próximamente!)
         </div>
-        <Button color="primary" className={`button ${styles.cta}`}>
-          Comenzar a aprender ahora
-        </Button>
+        <SignUpCTA className={styles.cta}>Comenzar a aprender ahora</SignUpCTA>
       </section>
 
       {/* TODO: Stats de lo mas rapido que se aprende */}

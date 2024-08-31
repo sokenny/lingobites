@@ -16,8 +16,8 @@ const Nav = () => {
         <p className="font-bold text-inherit">ACME</p>
       </NavbarBrand>
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        <NavbarItem isActive>
-          <Link href="#features" aria-current="page">
+        <NavbarItem>
+          <Link color="foreground" href="#features">
             Como Funciona
           </Link>
         </NavbarItem>
