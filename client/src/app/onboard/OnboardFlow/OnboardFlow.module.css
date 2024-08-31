@@ -1,0 +1,99 @@
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading {
+  position: absolute;
+  top: 50%;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 32px;
+  line-height: normal;
+}
+
+.title span {
+  color: var(--primary);
+}
+
+.step1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.languages {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content: center;
+}
+
+.lang,
+.level {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin: 8px;
+  width: 160px;
+  cursor: pointer;
+}
+
+.lang:hover,
+.level:hover {
+  background-color: rgba(0, 0, 0, 0.025);
+}
+
+.bottom {
+  display: flex;
+  justify-content: center;
+}
+
+.back {
+  margin-top: 64px;
+  border-radius: 8px;
+}
+
+.levels {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.level {
+  width: 450px;
+  padding: 12px;
+}
+
+.plans {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.subTitle {
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.step5 .title, .step4 .title {
+  margin-bottom: 16px;
+}
+
+.step5 .subTitle, .step4 .subTitle {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.subTitle span {
+  opacity: 1;
+}

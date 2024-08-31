@@ -2,6 +2,7 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import { Button } from "@nextui-org/react";
 import SignUpCTA from "./components/SignUpCTA";
+import Plans from "./components/Plans";
 
 // TODO-p1-1: Terminar landing page
 
@@ -25,6 +26,10 @@ const languages = [
   {
     name: "Portugués",
     flag: "🇧🇷",
+  },
+  {
+    name: "Español",
+    flag: "🇪🇸",
   },
 ];
 
@@ -69,7 +74,7 @@ export default function Home() {
         {/* <h3>Qué idioma querés aprender?</h3> */}
         <div className={styles.langsContainer}>
           {languages.map((lang) => (
-            <div className={styles.lang}>
+            <div className={styles.lang} key={lang.name}>
               <div className={styles.flag}>{lang.flag}</div>
               <span>{lang.name}</span>
             </div>
@@ -150,21 +155,7 @@ export default function Home() {
         <h3>
           LingoBites es <span>30 veces</span> más barato que un tutor!
         </h3>
-        <div className={styles.plans}>
-          <div className={styles.plan}>
-            <div className={styles.period}>1 mes</div>
-            <div className={styles.price}>£19</div>
-          </div>
-          <div className={styles.plan}>
-            <div className={styles.period}>6 meses</div>
-            <div className={styles.price}>£49</div>
-            <div className={styles.prefered}>Opción preferida!</div>
-          </div>
-          <div className={styles.plan}>
-            <div className={styles.period}>12 meses</div>
-            <div className={styles.price}>£69</div>
-          </div>
-        </div>
+        <Plans />
         <div className={styles.disclaimer}>
           Vas a tener 14 días de prueba gratuita!
         </div>

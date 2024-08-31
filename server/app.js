@@ -1,5 +1,6 @@
 import express from "express";
 import store from "./store.js";
+import cors from "cors";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import twilioClient from "twilio";
@@ -22,6 +23,14 @@ export const openai = new OpenAI({
 });
 
 const app = express();
+
+const corsOptions = {
+  origin: "http://localhost:3000",
+  methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
+
+app.use(cors(corsOptions));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -216,6 +225,33 @@ app.post("/public/authenticate", async (req, res) => {
   }
 });
 
+app.post("/onboard/:userEmail", async (req, res) => {
+  try {
+    const userEmail = req.params.userEmail;
+    const data = req.body;
+    const user = await db.User.findOne({
+      where: {
+        email: userEmail,
+      },
+    });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    await db.UserOnboarding.create({
+      user_id: user.id,
+      email: user.email,
+      ...data,
+    });
+
+    res.json({ message: "User onboarded" });
+  } catch (error) {
+    console.error("Error onboarding user: ", error);
+
+    res.status(500).json({ message: "An error occurred onboarding user" });
+  }
+});
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
