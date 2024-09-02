@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { Button, Spinner } from "@nextui-org/react";
 import Plans from "../../components/Plans";
@@ -10,11 +10,28 @@ import styles from "./OnboardFlow.module.css";
 
 const OnboardFlow = () => {
   const { data: session } = useSession();
+  const [submissionSuccess, setSubmissionSuccess] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [formData, setFormData] = useState({});
 
+  useEffect(() => {
+    async function fetchUser() {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_STELLAR_API}/user/${session.user.email}`
+      );
+      const data = await res.json();
+      if (data.onboarding) {
+        setSubmissionSuccess(true);
+      }
+    }
+
+    if (session && session.user) {
+      fetchUser();
+    }
+  }, [session]);
+
   function getStep() {
-    if (submitting) return;
+    if (submitting || submissionSuccess) return;
     if (!formData.native_language) return 1;
     if (!formData.learning_language) return 2;
     if (!formData.current_level) return 3;
@@ -24,7 +41,6 @@ const OnboardFlow = () => {
 
   async function handleSubmit() {
     setSubmitting(true);
-    // POST to /onboard/:userEmail with formData
     try {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_STELLAR_API}/onboard/${session.user.email}`,
@@ -37,7 +53,8 @@ const OnboardFlow = () => {
         }
       );
       const data = await res.json();
-      console.log("Onboard response: ", data);
+
+      setSubmissionSuccess(true);
     } catch (error) {
       console.error("Error onboarding user: ", error);
     } finally {
@@ -50,6 +67,19 @@ const OnboardFlow = () => {
         {submitting && (
           <div className={styles.loading}>
             <Spinner size="lg" />
+          </div>
+        )}
+        {submissionSuccess && (
+          <div className={styles.success}>
+            <h2 className={styles.title}>🎉 ¡Gracias por registrarte! 🎉</h2>
+            <p className={styles.subTitle}>
+              Ante la alta demanda reciente, tuvimos que abrir una lista de
+              espera. Pronto te contactaremos para proceder con el registro.
+            </p>
+            <br />
+            <p className={styles.subTitle}>
+              Ante cualquier duda, escribinos a hello@lingobites.com.
+            </p>
           </div>
         )}
         {getStep() === 1 && (
@@ -161,7 +191,7 @@ const OnboardFlow = () => {
         )}
       </div>
       <div className={styles.bottom}>
-        {getStep() !== 1 && !submitting && (
+        {getStep() !== 1 && !submitting && !submissionSuccess && (
           <Button
             className={styles.back}
             onClick={() => {

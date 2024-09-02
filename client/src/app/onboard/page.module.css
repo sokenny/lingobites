@@ -3,3 +3,9 @@
   background-color: white;
   min-height: 70vh;
 }
+
+@media (max-width: 768px) {
+  .main section {
+    margin: 64px 5vw;
+  } 
+}

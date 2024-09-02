@@ -35,6 +35,10 @@
   justify-content: center;
 }
 
+.languages {
+  max-width: 750px;
+}
+
 .lang,
 .level {
   padding: 32px;
@@ -96,4 +100,34 @@
 
 .subTitle span {
   opacity: 1;
+}
+
+.success {
+  text-align: center;
+}
+
+.success > * {
+  max-width: 700px;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 32px;
+  }
+
+  .step {
+    max-width: 100%;
+  }
+
+  .level {
+    width: 100%;
+  }
+
+  .subTitle {
+    font-size: 16px;
+  }
+
+  .back {
+    margin-top: 42px;
+  }
 }

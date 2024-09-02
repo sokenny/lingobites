@@ -99,14 +99,14 @@ export default function Home() {
             aprendo 3 veces más rápido.
             <span className={styles.qm}>"</span>
           </h3>
-          <div className={styles.person}>Juan Chaher</div>
+          <div className={styles.person}>Malena Girod, 26, Buenos Aires.</div>
         </div>
       </section>
 
       <section className={styles.features} id="features">
         <div className={`${styles.feature} ${styles.feature1}`}>
           <div className={styles.copy}>
-            <div className={styles.mCopy}>Corrección en tiempo real</div>
+            <div className={styles.mCopy}>📝 Corrección en tiempo real</div>
             <div className={styles.sCopy}>
               Conforme se desarrolla la conversación, te señalaremos los
               errores. Equivocarse es parte del proceso!
@@ -122,7 +122,7 @@ export default function Home() {
         </div>
         <div className={`${styles.feature} ${styles.feature2}`}>
           <div className={styles.copy}>
-            <div className={styles.mCopy}>¡Entrena tu oído al idioma!</div>
+            <div className={styles.mCopy}>🦻 ¡Entrena tu oído al idioma!</div>
             <div className={styles.sCopy}>
               Recibe audios que debes traducir. ¡Es una excelente forma de
               mejorar tu comprensión auditiva!
@@ -134,7 +134,7 @@ export default function Home() {
         </div>
         <div className={`${styles.feature} ${styles.feature3}`}>
           <div className={styles.copy}>
-            <div className={styles.mCopy}>Configuración personalizable</div>
+            <div className={styles.mCopy}>⚙️ Configuración personalizable</div>
             <div className={styles.sCopy}>
               Personaliza tu LangBuddy según tus necesidades. Puedes seleccionar
               diferentes niveles de corrección, cómo se deben explicar tus
@@ -143,17 +143,14 @@ export default function Home() {
             </div>
           </div>
           <div className={styles.asset}>
-            <img
-              src="/custom-settings.png"
-              alt="Configuración personalizable"
-            />
+            <img src="/config.png" alt="Configuración personalizable" />
           </div>
         </div>
       </section>
 
       <section className={styles.pricing} id="pricing">
         <h3>
-          LingoBites es <span>30 veces</span> más barato que un tutor!
+          ¡LingoBites es <span>30 veces</span> más barato que un tutor!
         </h3>
         <Plans />
         <div className={styles.disclaimer}>
@@ -165,7 +162,7 @@ export default function Home() {
           Corrección ilimitada de errores <br />✅ Respuestas rápidas <br />✅
           Notas de voz
           <br />✅ Conversación iniciada por IA <br />✅ Informes de aprendizaje
-          por correo electrónico (¡Próximamente!)
+          por email.
         </div>
         <SignUpCTA className={styles.cta}>Comenzar a aprender ahora</SignUpCTA>
       </section>
@@ -173,4 +170,139 @@ export default function Home() {
       {/* TODO: Stats de lo mas rapido que se aprende */}
     </main>
   );
+}
+
+{
+  /* <section>
+        <div style={{ fontWeight: "bold", fontSize: 24, marginBottom: 16 }}>
+          Tu configuración de LingoBites
+        </div>
+        <div style={{ marginBottom: "24px" }}>
+          <div style={{ marginBottom: "12px" }}>Nivel de correcciones</div>
+          <div>
+            <Button
+              style={{
+                borderRadius: "4px",
+                marginRight: "10px",
+                backgroundColor: "#f0f0f0",
+                border: "1px solid #d6d6d6",
+              }}
+            >
+              Leve
+            </Button>
+            <Button
+              style={{
+                borderRadius: "4px",
+                marginRight: "10px",
+              }}
+              color="primary"
+            >
+              Normal
+            </Button>
+            <Button
+              style={{
+                borderRadius: "4px",
+                marginRight: "10px",
+                backgroundColor: "#f0f0f0",
+                border: "1px solid #d6d6d6",
+              }}
+            >
+              Estricto
+            </Button>
+          </div>
+          <div
+            style={{
+              opacity: "0.5",
+              fontWeight: 300,
+              fontStyle: "italic",
+              fontSize: "14px",
+              marginTop: "8px",
+            }}
+          >
+            Corregirá errores de vocabulario, gramática y conjugación.
+          </div>
+        </div>
+        <div style={{ marginBottom: "24px" }}>
+          <div style={{ marginBottom: "12px" }}>Explicación de errores</div>
+          <div>
+            <Button
+              style={{
+                borderRadius: "4px",
+                marginRight: "10px",
+                backgroundColor: "#f0f0f0",
+                border: "1px solid #d6d6d6",
+              }}
+            >
+              Ninguna
+            </Button>
+            <Button
+              style={{
+                borderRadius: "4px",
+                marginRight: "10px",
+              }}
+              color="primary"
+            >
+              Corta
+            </Button>
+            <Button
+              style={{
+                borderRadius: "4px",
+                marginRight: "10px",
+                backgroundColor: "#f0f0f0",
+                border: "1px solid #d6d6d6",
+              }}
+            >
+              Completa
+            </Button>
+          </div>
+          <div
+            style={{
+              opacity: "0.5",
+              fontWeight: 300,
+              fontStyle: "italic",
+              fontSize: "14px",
+              marginTop: "8px",
+            }}
+          >
+            Tus errores se explicarán lo más brevemente posible.
+          </div>
+        </div>
+        <div style={{ marginBottom: "24px" }}>
+          <div style={{ marginBottom: "12px" }}>
+            Traducir cada mensaje nuevo en tu idioma nativo
+          </div>
+          <div>
+            <Button
+              style={{
+                borderRadius: "4px",
+                marginRight: "10px",
+                backgroundColor: "#f0f0f0",
+                border: "1px solid #d6d6d6",
+              }}
+            >
+              No
+            </Button>
+            <Button
+              style={{
+                borderRadius: "4px",
+                marginRight: "10px",
+              }}
+              color="primary"
+            >
+              Si
+            </Button>
+          </div>
+          <div
+            style={{
+              opacity: "0.5",
+              fontWeight: 300,
+              fontStyle: "italic",
+              fontSize: "14px",
+              marginTop: "8px",
+            }}
+          >
+            Los mensajes que recibas de la IA serán traducidos.
+          </div>
+        </div>
+      </section> */
 }

@@ -252,6 +252,34 @@ app.post("/onboard/:userEmail", async (req, res) => {
     res.status(500).json({ message: "An error occurred onboarding user" });
   }
 });
+
+app.get("/user/:userEmail", async (req, res) => {
+  try {
+    const userEmail = req.params.userEmail;
+    const user = await db.User.findOne({
+      where: {
+        email: userEmail,
+      },
+      include: [
+        {
+          model: db.UserOnboarding,
+          as: "onboarding",
+        },
+      ],
+    });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.json(user);
+  } catch (error) {
+    console.error("Error getting user: ", error);
+
+    res.status(500).json({ message: "An error occurred getting user" });
+  }
+});
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });

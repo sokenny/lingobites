@@ -1,6 +1,5 @@
 
 .plans {
-    margin-top: 32px;
     display: flex;
   }
   
@@ -44,4 +43,17 @@
   
   .plan:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  }
+
+  @media (max-width: 768px) {
+    .plans {
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    .plan {
+      margin-bottom: 12px;
+      margin-right: 0;
+      width: 100%;
+    }
   }
