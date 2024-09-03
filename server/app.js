@@ -1,3 +1,5 @@
+// TODO-p1-1: Finalizar deploy en EBS -> Armar un All good! route. -> Agregar allowed origin a lingobites.io. -> Ver que mierda pasa
+
 import express from "express";
 import store from "./store.js";
 import cors from "cors";
@@ -35,7 +37,11 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const port = 3001;
+const port = process.env.PORT || 3001;
+
+app.get("/", (req, res) => {
+  res.status(200).send("All good!");
+});
 
 app.get("/", (req, res) => {
   res.send("Hello World! Check your console for automated messages.");
