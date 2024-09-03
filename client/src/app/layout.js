@@ -15,6 +15,16 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      {/* add favicon */}
+      <head>
+        <link rel="icon" href="/favicon.png" />
+        {/* <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href={inter.url}
+          rel="stylesheet"
+        /> */}
+      </head>
+
       <body
         className={
           // inter.className
