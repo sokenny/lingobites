@@ -3,7 +3,6 @@
 import React from "react";
 import { signIn } from "next-auth/react";
 import { Button } from "@nextui-org/react";
-// import styles from "./SignUpCTA.module.css";
 
 const SignUpCTA = ({ children, className }) => {
   return (
