@@ -15,16 +15,21 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      {/* add favicon */}
       <head>
-        <link rel="icon" href="/favicon.png" />
-        {/* <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link rel="preconnect" href="https://d3niuqph2rteir.cloudfront.net" />
+        <link rel="preconnect" href="https://d3niuqph2rteir.cloudfront.net" />
+        <link rel="dns-prefetch" href="https://d3niuqph2rteir.cloudfront.net" />
         <link
-          href={inter.url}
-          rel="stylesheet"
-        /> */}
+          rel="preload"
+          href="https://d3niuqph2rteir.cloudfront.net/client_js/stellar.js"
+          as="script"
+        />
+        <script
+          async
+          src="https://d3niuqph2rteir.cloudfront.net/client_js/stellar.js"
+          data-stellar-api-key="0534bae40a7a6cf0e979da95a291260c:2e1aef0f8b499ee2fc317858d52e60b7ce69213ddf71655ad949b1449b39a3e5"
+        />
       </head>
-
       <body
         className={
           // inter.className
