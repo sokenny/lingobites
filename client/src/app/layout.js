@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
         <script
           async
           src="https://d3niuqph2rteir.cloudfront.net/client_js/stellar.js"
-          data-stellar-api-key="0534bae40a7a6cf0e979da95a291260c:2e1aef0f8b499ee2fc317858d52e60b7ce69213ddf71655ad949b1449b39a3e5"
+          data-stellar-api-key="da0237b534744428bebf5a5a158f8059:455b4609acb3566bf34272e176fe8e774d35aa189c2c0a42a7db34646c8c0ed4"
         />
       </head>
       <body
