@@ -15,6 +15,7 @@ const handler = NextAuth({
       console.log("DATA! ", data);
 
       const response = await fetch(
+        // change this env var name to LINGOBITES
         process.env.NEXT_PUBLIC_STELLAR_API + "/public/authenticate",
         {
           method: "POST",
