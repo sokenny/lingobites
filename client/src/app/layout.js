@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import { Providers } from "./providers";
 import Nav from "./components/Nav";
+import { GoogleTagManager } from "@next/third-parties/google";
 import styles from "./layout.module.css";
 
 import "./globals.css";
@@ -15,21 +16,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://d3niuqph2rteir.cloudfront.net" />
-        <link rel="preconnect" href="https://d3niuqph2rteir.cloudfront.net" />
-        <link rel="dns-prefetch" href="https://d3niuqph2rteir.cloudfront.net" />
-        <link
-          rel="preload"
-          href="https://d3niuqph2rteir.cloudfront.net/client_js/stellar.js"
-          as="script"
-        />
-        <script
-          async
-          src="https://d3niuqph2rteir.cloudfront.net/client_js/stellar.js"
-          data-stellar-api-key="da0237b534744428bebf5a5a158f8059:455b4609acb3566bf34272e176fe8e774d35aa189c2c0a42a7db34646c8c0ed4"
-        />
-      </head>
+      <GoogleTagManager gtmId="GTM-PJJR59HR" />
       <body
         className={
           // inter.className
@@ -37,6 +24,14 @@ export default function RootLayout({ children }) {
           `${styles.page} ${inter.className}`
         }
       >
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-PJJR59HR"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          ></iframe>
+        </noscript>
         <Providers>
           <Nav />
           <div className={styles.stickyBar}>
