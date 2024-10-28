@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
         {`
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({
-    stellarApiKey: 'ddf267c1a4d8d9d21c2bc229296d5da0:ed272a647ae6ec1d03d5087af1fedc50c6fc9074d831b4b6cea9c18fdd2f4e7d',
+    stellarApiKey: 'bfac3bf15e4685330ffbd032acc80d48:68044bbbf6f4a906958e2899c67a2b96f33f0a8641426f1c36c976d7eff85671',
   });
 `}
       </Script>
