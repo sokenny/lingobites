@@ -5,6 +5,7 @@ import { GoogleTagManager } from "@next/third-parties/google";
 import styles from "./layout.module.css";
 
 import "./globals.css";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,6 +18,21 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <GoogleTagManager gtmId="GTM-PJJR59HR" />
+
+      <Script>
+        {`
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    stellarApiKey: 'ddf267c1a4d8d9d21c2bc229296d5da0:ed272a647ae6ec1d03d5087af1fedc50c6fc9074d831b4b6cea9c18fdd2f4e7d',
+  });
+`}
+      </Script>
+      <link rel="preconnect" href="https://d3niuqph2rteir.cloudfront.net" />
+      <link rel="dns-prefetch" href="https://d3niuqph2rteir.cloudfront.net" />
+      <script
+        async
+        src="https://d3niuqph2rteir.cloudfront.net/client_js/stellar.js"
+      />
       <body
         className={
           // inter.className
