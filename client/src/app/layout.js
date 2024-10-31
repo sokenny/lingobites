@@ -19,20 +19,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <GoogleTagManager gtmId="GTM-PJJR59HR" />
 
-      <Script>
-        {`
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({
-    stellarApiKey: 'bfac3bf15e4685330ffbd032acc80d48:68044bbbf6f4a906958e2899c67a2b96f33f0a8641426f1c36c976d7eff85671',
-  });
-`}
-      </Script>
-      <link rel="preconnect" href="https://d3niuqph2rteir.cloudfront.net" />
-      <link rel="dns-prefetch" href="https://d3niuqph2rteir.cloudfront.net" />
       <script
+        type="text/javascript"
         async
-        src="https://d3niuqph2rteir.cloudfront.net/client_js/stellar.js"
-      />
+        src="https://cdn.mida.so/js/optimize.js?key=EmLKDWG7dPmGgYVNgpZrxw"
+      ></script>
       <body
         className={
           // inter.className
