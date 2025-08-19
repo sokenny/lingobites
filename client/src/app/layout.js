@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <GoogleTagManager gtmId="GTM-PJJR59HR" />
+        {/* <GoogleTagManager gtmId="GTM-PJJR59HR" /> */}
         <script
           type="text/javascript"
           async
