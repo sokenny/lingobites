@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
         <link rel="dns-prefetch" href="https://d3niuqph2rteir.cloudfront.net" />
         <script
           async
-          src="https://d3niuqph2rteir.cloudfront.net/client_js/stellar.js?apiKey=29760eb8d05b14779a48eb98a6b330dc:65f2a8bfd7395da4025368b1a026a9ce8642c0f0ffaa22110190297ba918105b"
+          src="http://localhost:3001/public/clientjs?apiKey=834f4f0ca1a5ee512b1a6167a145d85c:2dce45c57d1f6931c80348d4048ff1d9e57e8d167b66b5a676bc2ba289e61c2d"
         ></script>
       </head>
 
