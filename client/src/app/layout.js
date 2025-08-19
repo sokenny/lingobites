@@ -17,13 +17,22 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <GoogleTagManager gtmId="GTM-PJJR59HR" />
+      <head>
+        <GoogleTagManager gtmId="GTM-PJJR59HR" />
+        <script
+          type="text/javascript"
+          async
+          src="https://cdn.mida.so/js/optimize.js?key=EmLKDWG7dPmGgYVNgpZrxw"
+        ></script>
 
-      <script
-        type="text/javascript"
-        async
-        src="https://cdn.mida.so/js/optimize.js?key=EmLKDWG7dPmGgYVNgpZrxw"
-      ></script>
+        <link rel="preconnect" href="https://d3niuqph2rteir.cloudfront.net" />
+        <link rel="dns-prefetch" href="https://d3niuqph2rteir.cloudfront.net" />
+        <script
+          async
+          src="https://d3niuqph2rteir.cloudfront.net/client_js/stellar.js?apiKey=29760eb8d05b14779a48eb98a6b330dc:65f2a8bfd7395da4025368b1a026a9ce8642c0f0ffaa22110190297ba918105b"
+        ></script>
+      </head>
+
       <body
         className={
           // inter.className
