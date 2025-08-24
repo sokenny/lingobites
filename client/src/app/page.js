@@ -99,7 +99,9 @@ export default function Home() {
             aprendo 3 veces más rápido.
             <span className={styles.qm}>"</span>
           </h3>
-          <div className={styles.person}>Malena Girod, 26, Buenos Aires.</div>
+          <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" id="marijuana">
+            <div className={styles.person}>Malena Girod, 26, Buenos Aires.</div>
+          </a>
         </div>
       </section>
 
